@@ -55,3 +55,15 @@ hr {
     padding-left: 25px;
     border-radius: 1%;
 }
+
+
+
+#images {
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+#stever {
+    max-width: 60%;
+}
