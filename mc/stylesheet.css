@@ -2,7 +2,9 @@ body {
     background-color: #5b7c3d ;
     display: flex;
     justify-content: center;
+
 }
+
 
 h1, h2 {
     color: #ffd700;
@@ -33,11 +35,7 @@ li {
     text-align: center;
 }
 
-hr {
-    background-color: burlywood;
-    width: 80%;
-    border-color: burlywood;
-}
+
 
 .button {
     font-family: cursive;
@@ -66,4 +64,33 @@ hr {
 
 #stever {
     max-width: 60%;
+}
+
+#link {
+    text-decoration: none;
+    color: white;
+}
+
+.movietext {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+#stretch {
+    width: 100%;
+    float: inline-end;
+}
+
+#black {
+    height: 30px;
+    border: black;
+    width: 100%;
+    background-color: black;
+}
+
+#mainone {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
