@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How Māui Caught the Sun (Excessive divs)</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .header {
+        background-color: #2c3e50;
+        color: #fff;
+        text-align: center;
+        padding: 2rem 0;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+      .nav {
+        background-color: #34495e;
+        padding: 1rem;
+        text-align: center;
+      }
+      .nav a {
+        color: #fff;
+        margin: 0 1rem;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .container {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .section {
+        margin-bottom: 2rem;
+      }
+      .section-title {
+        color: #2c3e50;
+        border-bottom: 2px solid #2c3e50;
+        padding-bottom: 0.5rem;
+        font-size: 1.8rem;
+      }
+      .image-container {
+        margin: 1rem 0;
+        text-align: center;
+      }
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .caption {
+        font-style: italic;
+        color: #777;
+        margin-top: 0.5rem;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #e67e22;
+      }
+      .footer {
+        background-color: #2c3e50;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>How Māui Caught the Sun</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <div><a href="#story">The Story</a></div>
+      <div><a href="#maui">Māui</a></div>
+      <div><a href="#sun">The Sun</a></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- The Story Section -->
+      <section>
+        <div class="section-title">The Story</div>
+        <p>Published on March 01, 0025</p>
+        <article>
+          <p>
+            Long ago, the sun (<strong>Tama-nui-te-rā</strong>) raced across the
+            sky too quickly, leaving people with little time to work, fish, or
+            grow food. Māui, the clever demigod, decided to slow down the sun to
+            help his people.
+          </p>
+        </article>
+        <figure>
+          <img src="img/mauiandsun.jpg" alt="Māui and the Sun" />
+          <figcaption>
+            Māui and his brothers preparing to catch the sun.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- Māui Section -->
+      <section>
+        <div class="section-title">Māui: The Clever Demigod</div>
+        <article>
+          <p>
+            <strong>Māui</strong> was known for his cleverness and bravery. He
+            convinced his brothers to help him by promising them a great reward.
+            Together, they journeyed to the pit where the sun rose each morning.
+          </p>
+        </article>
+        <figure>
+          <img src="img/Maui.jpg" alt="Māui the Demigod" />
+          <figcaption>
+            Māui, the clever demigod, preparing for the challenge.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- The Sun Section -->
+      <section>
+        <div class="section-title">The Sun: Tama-nui-te-rā</div>
+        <article class="text">
+          <p>
+            The sun, <strong>Tama-nui-te-rā</strong>, was powerful and fast.
+            Māui and his brothers waited in hiding, ready to throw their ropes
+            and trap the sun as it rose.
+          </p>
+        </article>
+        <aside class="text highlight">
+          🔥 When the sun appeared, Māui leapt out and struck it with his
+          magical jawbone, forcing it to slow down. 🌅
+        </aside>
+        <figure class="image-container">
+          <img src="img/catchthesun.jpg" alt="Tama-nui-te-rā (The Sun)" />
+          <figcaption class="caption">
+            Tama-nui-te-rā, the sun, being captured by Māui.
+          </figcaption>
+        </figure>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 0025 Māori Stories. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
