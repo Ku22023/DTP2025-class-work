@@ -1,0 +1,74 @@
+body {
+    margin: auto 0;
+    background-color:rgb(46, 38, 38);
+}
+
+header {
+    background-color: red;
+    justify-content: center;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    align-items: center;
+    height: 250px;
+    font-size: 50px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#rl {
+    height: 200px;
+    padding-left: 20px;
+}
+
+#mc {
+    height: 200px;
+    width: 200px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+#mo {
+    padding-left: 20px;
+    width: 200px;
+    
+}
+
+.game { 
+    background-color: black; 
+    background-color: black;
+    justify-content: center;
+    float: left;
+    margin: 50px;
+    width: 300px; 
+    padding: 40px; 
+    border-radius: 20px; 
+    box-shadow: 50px; 
+    transition: transform 0.3s; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+} 
+
+a {
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    color: yellow;
+}
+
+.game:hover { 
+    transform: scale(1.05); 
+} 
+
+footer {
+    text-align: center;
+    color: white;
+}
