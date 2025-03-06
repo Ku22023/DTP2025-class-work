@@ -3,6 +3,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    margin: auto 0;
 }
 
 
@@ -93,4 +94,10 @@ li {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+
+
+#main-mc {
+    background-color: black;
 }
