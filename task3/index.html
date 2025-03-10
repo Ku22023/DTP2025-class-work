@@ -64,9 +64,62 @@
 <footer>
     <p>Copyright 2025 Game Heroes. All Rights Reserved.</p>
 </footer>
- 
-<a data-fancybox data-src="task3/img/alex.jpg" data-caption="Minecraft Alex">
-    <img src="alex.jpg" alt="Minecraft" id="mc"> 
+
+<div class="gallery">
+    <img src="img/alex.jpg" alt="alex"> 
+    <img src="img/creeper.jpg" alt="creeper">
+    <img src="img/grass.png" alt="grass">
+</div>
+
+<div class="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img src="" alt="Large Image">
+    <span class="next">&#10095;</span>
+</div>
+
+<script>
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox img');
+    const closeBtn = document.querySelector('.close');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    let currentIndex = 0;
+
+    images.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = 'flex';
+            lightbox.src = img.src;
+            currentIndex = index;
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        lightboxImg.src = images[currentIndex].src;
+    });
+
+    nextBtn.addEventListener('click' () => {
+        currentIndex = (currentIndex < images.length -1) ? currentIndex + 1 : 0;
+        lightbox.src = images[currentIndex].src;
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none'
+        }
+    });
+
+</script>
+
+<a data-fancybox data-src="img/creeper.jpg" data-caption="Minecraft Alex">
+    <img src="img/creeper.jpg" alt="Minecraft" id="mc"> 
 </a>
 
 <script>
