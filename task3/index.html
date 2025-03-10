@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Review</title>
     <link rel="stylesheet" href="style3.css">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 </head>
 
 <body>
 
-<header>
+
+
+    <header>
     <p id="title"> 🎮 Game Heroes - Best Game Reviews 🎮</p>
 </header>
 
@@ -20,7 +24,9 @@
         <article class="game">
             <a href="mc/minecraft.html" class="box">
                 <figure>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Minecraft_Wiki_2023.png" alt="Minecraft" id="mc"> 
+                    <a data-fancybox data-src="task3/img/alex" data-caption="Minecraft Alex">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Minecraft_Wiki_2023.png" alt="Minecraft" id="mc"> 
+                    </a>
                 </figure>    
                 <figcaption>
                     <h1 class="gametitle">Minecraft</h1>
@@ -58,6 +64,18 @@
 <footer>
     <p>Copyright 2025 Game Heroes. All Rights Reserved.</p>
 </footer>
-    
+ 
+<a data-fancybox data-src="task3/img/alex.jpg" data-caption="Minecraft Alex">
+    <img src="alex.jpg" alt="Minecraft" id="mc"> 
+</a>
+
+<script>
+    Fancybox.bind("data-fancybox", {
+        
+    })
+</script>
+
+
+
 </body>
 </html>
