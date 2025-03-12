@@ -24,8 +24,11 @@
         <article class="game">
             <a href="mc/minecraft.html" class="box">
                 <figure>
-                    <a data-fancybox data-src="task3/img/alex" data-caption="Minecraft Alex">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Minecraft_Wiki_2023.png" alt="Minecraft" id="mc"> 
+                    <a data-fancybox="minecraft-gallery" src="img/creeper.jpg">
+                        <img src="img/mclogo.png" alt="Minecraft" id="mc"> 
+                    </a>
+                    <a href="img/alex.jpg" data-fancybox="minecraft-gallery" data-caption="Minecraft Alex">
+
                     </a>
                 </figure>    
                 <figcaption>
@@ -65,11 +68,6 @@
     <p>Copyright 2025 Game Heroes. All Rights Reserved.</p>
 </footer>
 
-<div class="gallery">
-    <img src="img/alex.jpg" alt="alex"> 
-    <img src="img/creeper.jpg" alt="creeper">
-    <img src="img/grass.png" alt="grass">
-</div>
 
 <div class="lightbox">
     <span class="close">&times;</span>
@@ -79,55 +77,53 @@
 </div>
 
 <script>
+    Fancybox.bind('[data-fancybox="minecraft-gallery"]', {
+
+    })
+
     const images = document.querySelectorAll('.gallery img');
     const lightbox = document.querySelector('.lightbox');
     const lightboxImg = document.querySelector('.lightbox img');
     const closeBtn = document.querySelector('.close');
     const prevBtn = document.querySelector('.prev');
     const nextBtn = document.querySelector('.next');
-
+    
     let currentIndex = 0;
 
+    // Open Lightbox
     images.forEach((img, index) => {
         img.addEventListener('click', () => {
             lightbox.style.display = 'flex';
-            lightbox.src = img.src;
+            lightboxImg.src = img.src;
             currentIndex = index;
         });
     });
 
+    // Close Lightbox
     closeBtn.addEventListener('click', () => {
         lightbox.style.display = 'none';
     });
 
+    // Navigate Left
     prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
         lightboxImg.src = images[currentIndex].src;
     });
 
-    nextBtn.addEventListener('click' () => {
-        currentIndex = (currentIndex < images.length -1) ? currentIndex + 1 : 0;
-        lightbox.src = images[currentIndex].src;
+    // Navigate Right
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+        lightboxImg.src = images[currentIndex].src;
     });
 
+    // Close when clicking outside the image
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
-            lightbox.style.display = 'none'
+            lightbox.style.display = 'none';
         }
     });
 
 </script>
-
-<a data-fancybox data-src="img/creeper.jpg" data-caption="Minecraft Alex">
-    <img src="img/creeper.jpg" alt="Minecraft" id="mc"> 
-</a>
-
-<script>
-    Fancybox.bind("data-fancybox", {
-        
-    })
-</script>
-
 
 
 </body>
