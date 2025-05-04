@@ -1,6 +1,5 @@
-answer = input(int("What is the sum of 5 and 10?"))
-try NameError:
-    if answer == 15:
-        print("Hooray!")
-    else:
-        print(f"sorry! {answer} is wrong wrong wrong")
+codes = ["level", "power", "deed", "fight", "meme", "run"]
+for i in codes:
+    if i[::-1] != i:
+        codes.remove(i)
+print(codes)
