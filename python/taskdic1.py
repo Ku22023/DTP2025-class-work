@@ -1,17 +1,18 @@
-James = {
-    'name': 'James Matthew Banham',
+Kyle = {
+    'name': 'Kyle Benjamin Uy',
     'age': '16',
 }
 
-James['class'] = 'human'
-James['tools'] = ['Apple', 'Banana', 'Pear']
-James['skills'] = ['shield bash', 'stealth', 'heal']
+Kyle['class'] = 'human'
+Kyle['Location'] = ['Home', 'Out', 'Kitchen']
+Kyle['tools'] = ['Apple', 'Banana', 'Pear']
+Kyle['skills'] = ['shield bash', 'stealth', 'heal']
 
-James['skills'].append('Matthews')
-print(James['skills'])
+Kyle['skills'].append('Matthews')
+print(Kyle['skills'][-2::])
 
-for i in James:
-    print(f"{i}: {James[i]}")
+for i in Kyle:
+    print(f"{i}: {Kyle[i]}")
 
-James['skills'].pop
-print(James['skills'])
+Kyle['skills'].pop()
+print(Kyle['skills'])
