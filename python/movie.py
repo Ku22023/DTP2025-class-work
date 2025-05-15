@@ -1,5 +1,5 @@
 movies = {
-    "M001": {
+    "M1": {
         "title": "Inception",
         "genre": "Sci-Fi",
         "duration": 148,
@@ -10,7 +10,7 @@ movies = {
         },
         "price": 12,
     },
-    "M002": {
+    "M2": {
         "title": "Interstellar",
         "genre": "Sci-Fi",
         "duration": 169,
@@ -21,7 +21,7 @@ movies = {
         },
         "price": 13,
     },
-    "M003": {
+    "M3": {
         "title": "Joker",
         "genre": "Drama",
         "duration": 122,
@@ -54,10 +54,7 @@ def SearchMovie(userrank):
         for i in movies:
             if searchfor == movies[i]["title"]:
                 print("Movie found!")
-                print(i)
-                for k in movies[i]:
-                    print(i[k])
-                    print(k, i[k])
+                print(movies[i])
                 SearchMovie(userrank)
             else:
                 j += 1
@@ -70,19 +67,45 @@ def SearchMovie(userrank):
         else:
             UserMenu()
 
+def AddMovie(movies):
+    print()
+    title = str(input("Enter the movie name: "))
+    genre = str(input("Enter the movie genre: "))
+    duration = str(input("Enter the duration of the movie (in minutes): "))
+    seats = str(input("Enter how many seats there are: "))
+    price = str(input("Enter how much the movie costs: "))
+
+    confirm = str(input(f"Are you sure you want to add movie:\n {title} \n Type 'yes' or 'no': "))
+    if confirm.lower() == "yes":
+        newmovie = (f"M{len(movies) + 1}")
+        movies[newmovie] = {
+        "title": title,
+        "genre": genre,
+        "duration": duration,
+        "seats": seats,
+        "price": price,
+        }
+        print(f"Sucessfully added movie {title}\n Movie Info: \n {newmovie, title, genre, duration, seats, price}")
+        AdminMenu()
+    else:
+        AdminMenu()
+    
 def AdminMenu():
     print()
     print("--- Admin Menu ---")
     print("1. Search for Movie")
     print("2. Add a Movie")
     print("3. Edit a Movie")
+    print("4. Exit")
     admin_option = int(input("Enter An option: "))
     if admin_option == 1: #search for movie
         SearchMovie(userrank="admin")
     elif admin_option == 2: #add movie
-        AddMovie()
+        AddMovie(movies=movies)
     elif admin_option == 3: #edit movie
         EditMovie()
+    elif admin_option == 4: #quit
+        print("Quitting Program...")
     else:
         print("Error: Please enter a proper option!")
         AdminMenu()
@@ -91,9 +114,12 @@ def UserMenu():
     print()
     print("--- Main Menu ---")
     print("1. Search for Movie")
-    admin_option = int(input("Enter An option: "))
-    if admin_option == 1: #search for movie
+    print("2. Exit")
+    user_option = int(input("Enter An option: "))
+    if user_option == 1: #search for movie
         SearchMovie(userrank="user")
+    elif user_option == 2: #quit
+        print("Quitting Program...")
     else:
         print("Error: Please enter a proper option!")
         UserMenu()
@@ -118,5 +144,6 @@ def Login():
 
 for i in range(1,100):
     print()
+    
+print(len(movies))
 Login()
-
