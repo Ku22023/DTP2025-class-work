@@ -51,6 +51,7 @@ def EditMovie():
     searchfor = easygui.enterbox("Enter the name of the movie you would like to edit: \nType 'Return to go back.'")
     if searchfor != None:
         if searchfor.lower() != "return":
+            j = 0
             for movie_id in movies:
                 if searchfor == movies[movie_id]["title"]:
                     movie_values = []
@@ -75,8 +76,10 @@ def EditMovie():
                         easygui.msgbox(f"Sucessfully editied movie {movie_id}\n Movie Info: \n {movie_id, movie_values[0], movie_values[1], movie_values[2], movie_values[3], movie_values[4]}")
                         AdminMenu()
                 else:
-                    easygui.msgbox(f"Movie with title {searchfor} not found!\n please try again!")
-                    EditMovie()
+                    j += 1
+                    if j == len(movies):
+                        easygui.msgbox(f"Movie with title {searchfor} not found!\n please try again!")
+                        EditMovie()
                                         
 
 def SearchMovie(userrank):
