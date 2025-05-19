@@ -47,6 +47,38 @@ users = {
            "balance": 312.75},
 }
 
+def EditMovie():
+    searchfor = easygui.enterbox("Enter the name of the movie you would like to edit: \nType 'Return to go back.'")
+    if searchfor != None:
+        if searchfor.lower() != "return":
+            for movie_id in movies:
+                if searchfor == movies[movie_id]["title"]:
+                    movie_values = []
+                    movie_tags = [
+                        "title:",
+                        "genre:",
+                        "duration:",
+                        "seats:",
+                        "price:",
+                    ]
+                    movie_values = easygui.multenterbox(f"Enter the movie's info: ", "Editing Movie", movie_tags, movie_values)
+                    if len(movie_values) != 5:
+                        movie_values = easygui.multenterbox(f"Please fill in all info", "Editing Movie", movie_tags, movie_values)
+                    else:
+                        movies[movie_id] = {
+                        "title": movie_values[0],
+                        "genre": movie_values[1],
+                        "duration": movie_values[2],
+                        "seats": movie_values[3],
+                        "price": movie_values[4],
+                        }
+                        easygui.msgbox(f"Sucessfully editied movie {movie_id}\n Movie Info: \n {movie_id, movie_values[0], movie_values[1], movie_values[2], movie_values[3], movie_values[4]}")
+                        AdminMenu()
+                else:
+                    easygui.msgbox(f"Movie with title {searchfor} not found!\n please try again!")
+                    EditMovie()
+                                        
+
 def SearchMovie(userrank):
     searchfor = easygui.enterbox("Enter the name of the movie you would like to search for: \nType 'Return' to go back.")
     if searchfor != None:
@@ -59,7 +91,7 @@ def SearchMovie(userrank):
                         if key == "reviews":
                             print("yo")
                         else:
-                            valuelist.append(f"{key}: {value}\n")
+                            valuelist.append(f"{key}: {value}")
                     easygui.msgbox(f"Movie Found! Movie info: {valuelist}")
                     SearchMovie(userrank)
                 else:
@@ -88,8 +120,15 @@ def AddMovie(movies):
         "price:",
     ]
     movie_values = easygui.multenterbox("Enter the movie's info: ", "Adding Movie", movie_tags, movie_values)
+    for i in movie_values:
+        j = 0
+        if i == "":
+            j += 1
+            movie_values.pop(j)
     if len(movie_values) != 5:
-        movie_values = easygui.multenterbox("Please fill in all info", "Adding Movie", movie_tags, movie_values)
+        print(movie_values)
+        easygui.msgbox("Error: Please fill in all the values!")
+        AddMovie(movies=movies)
     else:
         newmovie = (f"M{len(movies) + 1}")
         movies[newmovie] = {
@@ -115,7 +154,7 @@ def AdminMenu():
             easygui.msgbox("Sucessfully Logged out!")
             Login()
         else:
-            print("Error: Please enter a proper option!")
+            easygui.msgbox("An unknown error occured.")
             AdminMenu()
 
 def UserMenu():
