@@ -47,16 +47,39 @@ users = {
            "balance": 312.75},
 }
 
-def DisplayMovieInfo(movie_id):
+#DOESNT WORK YET!!
+#def LeaveReview(movie_id, username):
+#    print(f"hello {username}")
+#    review_values = []
+#    review_tags = [
+#        "Rating:",
+#        "Review:",
+#    ]
+#    movie_title = movies[movie_id]["title"]
+#    review_values = easygui.multenterbox(f"Leaving a review for: ", "Leaving a review", review_tags)
+
+def DisplayMovieInfo(movie_id, userrank):
     valuelist = f"ID: {movie_id}\n"
     for key, value in movies[movie_id].items():
         if key == "reviews":
             print("yo")
         else:
             valuelist += (f"{key}: {value}\n")
-    user_option = easygui.buttonbox(f"Movie info:\n{valuelist}", choices=["Cancel", "Leave a Review"])
-    if user_option != None or user_option != "Cancel":
-        print("leaving a review")
+    if userrank == "admin":
+        user_option = easygui.buttonbox(f"Movie info:\n{valuelist}", choices=["Done", "Edit Movie Details"])
+        if user_option != None: 
+            if user_option != "Done":
+                EditMovie(movie_id)
+    else:
+        user_option = easygui.buttonbox(f"Movie info:\n{valuelist}", choices=["Done", "Leave a Review"])
+        if user_option != None: 
+            if user_option != "Done":
+                LeaveReview(movie_id, username=userrank)
+                print("leaving a review")
+            else:
+                ViewMovies(userrank)
+        else:
+            ViewMovies(userrank)
     
 def ViewMovies(userrank):
     print(userrank)
@@ -67,22 +90,17 @@ def ViewMovies(userrank):
     user_option = easygui.choicebox("Pick the movie you would like to view:", choices=choices)
     if user_option != None:
         movie_id = user_option.split(":")[0].strip()
-        DisplayMovieInfo(movie_id)
-        ViewMovies(userrank)
+        DisplayMovieInfo(movie_id, userrank)
     else:
         if userrank == "admin":
             AdminMenu()
         else:
             UserMenu()
 
-def EditMovie():
-    choices = []
-    for i in movies:
-        moidtitle = movies[i]["title"]
-        choices.append(f"{i}: {moidtitle}")
-    user_option = easygui.choicebox("Pick the movie you would like to view:", choices=choices)
-    if user_option != None:
-        movie_id = user_option.split(":")[0].strip()
+def EditMovie(movie_id):
+    if movie_id == "none":
+        ViewMovies(userrank="admin")
+    else:
         movie_values = []
         movie_tags = [
             "title:",
@@ -109,38 +127,38 @@ def EditMovie():
             "seats": movie_values[3],
             "price": movie_values[4],
             }
-            DisplayMovieInfo(movie_id)
+            DisplayMovieInfo(movie_id, userrank="admin")
             AdminMenu()
-    else:
-        AdminMenu()
+
      
 
 def SearchMovie(userrank):
-    searchfor = easygui.enterbox("Enter the name of the movie you would like to search for: \nType 'Return' to go back.")
+    searchfor = easygui.enterbox("Enter the name of the movie you would like to search for:")
     if searchfor != None:
         movie_index = 0
-        if searchfor.lower() != "return":
-            for movie_id in movies:
-                if searchfor == movies[movie_id]["title"]:
-                    DisplayMovieInfo(movie_id)
-                    SearchMovie(userrank)
-                else:
-                    movie_index += 1
-                    if movie_index == len(movies):
-                        easygui.msgbox(f"No movie with title {searchfor} found!")
-                        SearchMovie(userrank)
-        else:
-            if userrank == "admin":
-                AdminMenu()
+        for movie_id in movies:
+            if searchfor == movies[movie_id]["title"]:
+                DisplayMovieInfo(movie_id, userrank)
+                SearchMovie(userrank)
             else:
-                UserMenu()
+                movie_index += 1
+                if movie_index == len(movies):
+                    if userrank ==  "admin":
+                        user_choice = easygui.buttonbox(f"No movie with title {searchfor} found.\nWould you like to enter a new movie?", choices=["No", "Yes"])
+                        if user_choice == "No":
+                            SearchMovie(userrank)
+                        else:
+                            AddMovie()
+                    elif userrank == "user":
+                        easygui.msgbox(f"No movie with title {searchfor} found.")
+                        SearchMovie(userrank)
     else:
         if userrank == "admin":
             AdminMenu()
         else:
             UserMenu()
 
-def AddMovie(movies):
+def AddMovie():
     movie_values = []
     movie_tags = [
         "title:",
@@ -169,7 +187,7 @@ def AddMovie(movies):
             "seats": movie_values[3],
             "price": movie_values[4],
             }
-            DisplayMovieInfo(movie_id=newmovie)
+            DisplayMovieInfo(movie_id=newmovie, userrank="admin")
             AdminMenu()
     else:
         AdminMenu()
@@ -180,9 +198,9 @@ def AdminMenu():
         if admin_option == "Search for a Movie": #search for movie
             SearchMovie(userrank="admin")
         elif admin_option == "Add a Movie": #add movie
-            AddMovie(movies=movies)
+            AddMovie()
         elif admin_option == "Edit a Movie": #edit movie
-            EditMovie()
+            EditMovie(movie_id="none")
         elif admin_option == "View Movies":
             ViewMovies(userrank="admin")
         elif admin_option == "Log Out": #quit
@@ -191,20 +209,24 @@ def AdminMenu():
         else:
             easygui.msgbox("An unknown error occured.")
             AdminMenu()
+    else:
+        exit()
 
-def UserMenu():
-    user_option = easygui.buttonbox("Please choose your option:", choices=["Search for a Movie", "View Movies", "Log Out"])
+def UserMenu(username):
+    user_option = easygui.buttonbox(f"Welcome, {username}!\nPlease choose your option:", choices=["Search for a Movie", "View Movies", "Log Out"])
     if user_option != None:
         if user_option == "Search for a Movie": #search for movie
-            SearchMovie(userrank="user")
+            SearchMovie(userrank=username)
         elif user_option == "View Movies":
-            ViewMovies(userrank="user")
+            ViewMovies(userrank=username)
         elif user_option == "Log Out": #quit
             easygui.msgbox("Sucessfully Logged out!")
             Login()        
         else:
             easygui.msgbox("An unknown error occured.")
             UserMenu()
+    else:
+        exit()
 
 def Login():
     print()
@@ -217,13 +239,17 @@ def Login():
                     if username == "admin":
                         AdminMenu()
                     else:
-                        UserMenu()
+                        UserMenu(username)
                 else:
                     easygui.msgbox("Error: Username or Password Incorrect")
                     Login()
             else:
                 easygui.msgbox("Error: Username or Password Incorrect")
                 Login()
+        else:
+            exit()
+    else:
+        exit()
 
 
 
