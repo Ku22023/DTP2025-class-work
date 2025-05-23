@@ -48,15 +48,24 @@ users = {
 }
 
 #DOESNT WORK YET!!
-#def LeaveReview(movie_id, username):
-#    print(f"hello {username}")
-#    review_values = []
-#    review_tags = [
-#        "Rating:",
-#        "Review:",
-#    ]
-#    movie_title = movies[movie_id]["title"]
-#    review_values = easygui.multenterbox(f"Leaving a review for: ", "Leaving a review", review_tags)
+def LeaveReview(movie_id, username):
+    print(f"hello {username}")
+    review_values = []
+    review_tags = [
+        "rating:",
+        "comment:",
+    ]
+    movie_title = movies[movie_id]["title"]
+    review_values = easygui.multenterbox(f"Leaving a review for: ", "Leaving a review", review_tags)
+    review_id = len(movies[movie_id]["reviews"]) + 1
+    movies[movie_id]["reviews"][review_id]["name"] = username
+    movies[movie_id]["reviews"][review_id]["rating"] = review_values[0]
+    movies[movie_id]["reviews"][review_id]["comment"] = review_values[1]
+    easygui.msgbox(movies[movie_id]["reviews"][review_id]["name"])
+    easygui.msgbox(movies[movie_id]["reviews"][review_id]["rating"])
+    easygui.msgbox(movies[movie_id]["reviews"][review_id]["comment"])
+
+    
 
 def DisplayMovieInfo(movie_id, userrank):
     valuelist = f"ID: {movie_id}\n"
@@ -177,7 +186,7 @@ def AddMovie():
         if len(movie_values) != 5:
             print(movie_values)
             easygui.msgbox("Error: Please fill in all the values!")
-            AddMovie(movies=movies)
+            AddMovie()
         else:
             newmovie = (f"M{len(movies) + 1}")
             movies[newmovie] = {
